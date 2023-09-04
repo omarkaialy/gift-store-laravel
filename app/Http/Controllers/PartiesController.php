@@ -3,29 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-class ProductController extends Controller
+use  Illuminate\Support\Facades\DB;
+
+class PartiesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-            $products = DB::table('products')->get();
-            return $products;
+        $parties = DB::table('parties')->get();
+            return $parties;
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $requests)
+    public function create(Request $request)
     {
-  $post= DB::table('products')->insert([
-    'name'=>$requests->name,
-    'price'=>$requests->price
-   ]);
-
-   return $post;
+        $post= DB::table('parties')->insert([
+         'name'=>"marrid"
+         
+        ]);
+        return $post;
     }
 
     /**
@@ -67,4 +67,5 @@ class ProductController extends Controller
     {
         //
     }
+
 }
