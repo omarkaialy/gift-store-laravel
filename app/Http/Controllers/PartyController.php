@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Party;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PartyController extends Controller
 {
@@ -11,8 +13,9 @@ class PartyController extends Controller
      */
     public function index()
     {
-        
-       return "party"; 
+        $parties = DB::table('parties')->get();
+
+        return $parties;
     }
 
     /**
@@ -20,7 +23,7 @@ class PartyController extends Controller
      */
     public function create(Request $request)
     {
-        return view ('parties.create');
+        return view('parties.create');
     }
 
     /**
@@ -28,10 +31,9 @@ class PartyController extends Controller
      */
     public function store(Request $request)
     {
-      $party=new party();
-      $party->name=$request->name;
-      $party->save();
-      return response('تم اضافة البيانات بنجاح');
+
+        DB::table('parties')->insert(['name' => $request->name]);
+        return;
     }
 
     /**
@@ -39,7 +41,6 @@ class PartyController extends Controller
      */
     public function show(string $id)
     {
-        //
     }
 
     /**
