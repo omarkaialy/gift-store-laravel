@@ -1,4 +1,6 @@
 <?php
+use App\Models\Party;
+use App\Http\Controllers\PartyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route:: resource('parties',PartyController::class);
