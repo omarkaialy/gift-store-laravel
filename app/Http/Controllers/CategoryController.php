@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class CategoryController extends Controller
 {
@@ -13,13 +15,18 @@ class CategoryController extends Controller
     {
         $categories=category::all();
         return view('categories.index',compact('categories'));
+
+        $categories = DB::table('categories')->get();
+        return $categories;
+
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
+
         $category=new party();
         $category->name=$request->name;
         $category->save();
@@ -31,7 +38,8 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table('categories')->insert(['name' => $request->name]);
+        return response('Done');
     }
 
     /**
@@ -39,8 +47,10 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
+
         $categories=category::get()->where('id',$id)->first();
         return $categories;
+
     }
 
     /**

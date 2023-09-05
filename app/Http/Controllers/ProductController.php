@@ -1,6 +1,6 @@
 <?php
-
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -11,7 +11,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+       $products= DB::table('products')->get();
+       return products;
     }
 
     /**
@@ -19,12 +20,13 @@ class ProductController extends Controller
      */
     public function create(Request $request)
     {
-     $products=DB::table('products')->insert([
-      'name'=>$request->name,
-      'price'=>$request->price,
-      'gift'=>$request->gift
-     ]);
-     return $products;
+        $products= DB::table('products')->insert([
+            'name'=>$request->name,
+            'price'=>$request->price,
+            'gift'=>$request->gift,
+            'coordinate'=>$request->coordinate
+        ]);
+        return $products;
     }
 
     /**
