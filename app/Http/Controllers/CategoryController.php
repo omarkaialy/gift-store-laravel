@@ -11,7 +11,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories=category::all();
+        return view('categories.index',compact('categories'));
     }
 
     /**
@@ -19,7 +20,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $category=new party();
+        $category->name=$request->name;
+        $category->save();
+        return response('تم اضافة البيانات بنجاح');
     }
 
     /**
@@ -35,7 +39,8 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $categories=category::get()->where('id',$id)->first();
+        return $categories;
     }
 
     /**

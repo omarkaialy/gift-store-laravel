@@ -4,15 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PartyController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $parties=party::all();
-        return view('partyies.index',compact('parties'));
+        //
     }
 
     /**
@@ -20,10 +19,12 @@ class PartyController extends Controller
      */
     public function create(Request $request)
     {
-        $party=new party();
-      $party->name=$request->name;
-      $party->save();
-      return response('تم اضافة البيانات بنجاح');
+     $products=DB::table('products')->insert([
+      'name'=>$request->name,
+      'price'=>$request->price,
+      'gift'=>$request->gift
+     ]);
+     return $products;
     }
 
     /**
@@ -31,7 +32,7 @@ class PartyController extends Controller
      */
     public function store(Request $request)
     {
-      //
+        //
     }
 
     /**
@@ -39,8 +40,7 @@ class PartyController extends Controller
      */
     public function show(string $id)
     {
-        $parties=party::get()->where('id',$id)->first();
-        return $parties;
+        //
     }
 
     /**

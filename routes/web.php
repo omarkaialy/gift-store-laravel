@@ -1,6 +1,7 @@
 <?php
 use App\Models\Party;
 use App\Http\Controllers\PartyController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,4 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route:: resource('parties',PartyController::class);
+// Route:: resource('parties',PartyController::class);
+// Route:: resource('categories',CategoryController::class);
+// Route::get('products',[ProductController::class,'index']);
+Route::get('products/create',[ProductController::class,'create']);
